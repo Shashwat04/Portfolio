@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shashwat Mishra - Salesforce Developer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #00a1e0 0%, #0070d2 100%);
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="2" fill="rgba(255,255,255,0.1)"/></svg>');
+            animation: float 20s infinite linear;
+        }
+
+        @keyframes float {
+            from { transform: translateY(0); }
+            to { transform: translateY(-100px); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero .subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+            animation: fadeInUp 1s ease 0.2s backwards;
+        }
+
+        .hero .contact-info {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease 0.4s backwards;
+        }
+
+        .contact-info a {
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: transform 0.3s;
+        }
+
+        .contact-info a:hover {
+            transform: translateY(-3px);
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: white;
+            color: #0070d2;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s;
+            animation: fadeInUp 1s ease 0.6s backwards;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .section {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            text-align: center;
+            color: #0070d2;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: #00a1e0;
+            margin: 1rem auto;
+            border-radius: 2px;
+        }
+
+        .experience-grid {
+            display: grid;
+            gap: 3rem;
+        }
+
+        .experience-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+            border-left: 5px solid #00a1e0;
+        }
+
+        .experience-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .company-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .company-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #0070d2;
+        }
+
+        .role {
+            font-size: 1.1rem;
+            color: #666;
+            margin-bottom: 0.5rem;
+        }
+
+        .date {
+            color: #888;
+            font-size: 0.9rem;
+        }
+
+        .achievements {
+            list-style: none;
+            margin-top: 1.5rem;
+        }
+
+        .achievements li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .achievements li::before {
+            content: '▶';
+            position: absolute;
+            left: 0;
+            color: #00a1e0;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-category {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+        }
+
+        .skill-category:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .skill-category h3 {
+            color: #0070d2;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .skill-tag {
+            background: linear-gradient(135deg, #e8f4f8 0%, #d4ebf7 100%);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            color: #0070d2;
+            transition: all 0.3s;
+        }
+
+        .skill-tag:hover {
+            background: linear-gradient(135deg, #00a1e0 0%, #0070d2 100%);
+            color: white;
+            transform: scale(1.05);
+        }
+
+        .certifications {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .cert-card {
+            background: linear-gradient(135deg, #00a1e0 0%, #0070d2 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            transition: all 0.3s;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .cert-card:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 15px 40px rgba(0,112,210,0.3);
+        }
+
+        .cert-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .education-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .education-card h3 {
+            color: #0070d2;
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .recognition {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 3rem 2rem;
+        }
+
+        .awards {
+            display: grid;
+            gap: 1.5rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .award-item {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            border-left: 4px solid #00a1e0;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+
+        .award-icon {
+            color: #ffd700;
+            font-size: 1.5rem;
+            margin-right: 1rem;
+        }
+
+        footer {
+            background: #1a1a1a;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateX(-50%) translateY(0);
+            }
+            40% {
+                transform: translateX(-50%) translateY(-20px);
+            }
+            60% {
+                transform: translateX(-50%) translateY(-10px);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero .subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .section {
+                padding: 3rem 1rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Shashwat Mishra</h1>
+            <p class="subtitle">Certified Salesforce Developer | Lightning Web Components Expert</p>
+            <div class="contact-info">
+                <a href="mailto:shashwatmishra540@gmail.com">
+                    <span>✉</span> shashwatmishra540@gmail.com
+                </a>
+                <a href="tel:+919754390625">
+                    <span>📱</span> +91-9754390625
+                </a>
+                <a href="https://linkedin.com/in/shashwatmishra" target="_blank">
+                    <span>🔗</span> LinkedIn
+                </a>
+            </div>
+            <p style="max-width: 600px; margin: 2rem auto; font-size: 1.1rem;">
+                3+ years of experience delivering innovative Salesforce solutions using APEX, LWC, and modern cloud technologies in Agile environments.
+            </p>
+            <a href="#experience" class="cta-button">Explore My Work</a>
+        </div>
+        <div class="scroll-indicator">
+            <div style="font-size: 2rem;">↓</div>
+        </div>
+    </section>
+
+    <section id="experience" class="section">
+        <h2 class="section-title">Professional Experience</h2>
+        <div class="experience-grid">
+            <div class="experience-card">
+                <div class="company-header">
+                    <div>
+                        <div class="company-name">Incedo Inc</div>
+                        <div class="role">Salesforce Developer – Software Engineer</div>
+                    </div>
+                    <div class="date">January 2025 - Present</div>
+                </div>
+                <ul class="achievements">
+                    <li>Implemented Salesforce Data Cloud (CDP) Integration to unify customer data and create a 360-degree customer view for enhanced insights</li>
+                    <li>Designed and optimized Data Streams, Identity Resolution, and Segmentation to improve customer personalization and engagement</li>
+                    <li>Configured and customized Agentforce workflows, Omni-Channel routing, and automation to streamline agent operations</li>
+                    <li>Integrated Agentforce with telephony, chat systems, and Lightning Components to enhance agent productivity</li>
+                    <li>Implemented AI-driven insights and predictive analytics within Data Cloud to enhance customer engagement and business decision-making</li>
+                </ul>
+            </div>
+
+            <div class="experience-card">
+                <div class="company-header">
+                    <div>
+                        <div class="company-name">Cognizant Technology Solutions</div>
+                        <div class="role">Salesforce Developer – Programmer Analyst</div>
+                    </div>
+                    <div class="date">February 2022 – January 2025</div>
+                </div>
+                <ul class="achievements">
+                    <li><strong>Partner Central Transformation:</strong> Migrated Visualforce partner portal to LWC-based framework in Experience Cloud, improving site performance by 20%</li>
+                    <li><strong>UI/UX Development:</strong> Designed HTML layouts from Figma, customized LDS components, and integrated AWSUI to match Amazon UI styling</li>
+                    <li><strong>LWC & Event Communication:</strong> Developed sophisticated LWC components with efficient parent-child communication using events</li>
+                    <li><strong>Integrations:</strong> Built Integration Procedures for seamless data exchange between Salesforce and external systems</li>
+                    <li><strong>Sales and Service Cloud:</strong> Delivered dynamic Apex solutions with SOQL, batch classes, ensuring 95%+ test coverage</li>
+                    <li><strong>Marketing Cloud Automation:</strong> Designed personalized email campaigns and automated marketing journeys</li>
+                    <li><strong>CI/CD:</strong> Managed Azure DevOps pipelines, pull requests, and performed ANT-based cross-org deployments</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" style="background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);">
+        <h2 class="section-title">Technical Skills</h2>
+        <div class="skills-grid">
+            <div class="skill-category">
+                <h3>🔧 Salesforce Development</h3>
+                <div class="skill-tags">
+                    <span class="skill-tag">APEX</span>
+                    <span class="skill-tag">Lightning Web Components</span>
+                    <span class="skill-tag">Trigger Framework</span>
+                    <span class="skill-tag">Aura Framework</span>
+                    <span class="skill-tag">SOQL/SOSL/SAQL</span>
+                    <span class="skill-tag">Lightning Data Service</span>
+                    <span class="skill-tag">Event Handling</span>
+                </div>
+            </div>
+
+            <div class="skill-category">
+                <h3>☁️ Cloud & Integration</h3>
+                <div class="skill-tags">
+                    <span class="skill-tag">Sales Cloud</span>
+                    <span class="skill-tag">Service Cloud</span>
+                    <span class="skill-tag">Data Cloud</span>
+                    <span class="skill-tag">Marketing Cloud</span>
+                    <span class="skill-tag">REST API</span>
+                    <span class="skill-tag">SOAP API</span>
+                    <span class="skill-tag">AgentForce</span>
+                </div>
+            </div>
+
+            <div class="skill-category">
+                <h3>💻 Web Technologies</h3>
+                <div class="skill-tags">
+                    <span class="skill-tag">HTML5</span>
+                    <span class="skill-tag">CSS</span>
+                    <span class="skill-tag">JavaScript</span>
+                    <span class="skill-tag">Java</span>
+                    <span class="skill-tag">SQL</span>
+                </div>
+            </div>
+
+            <div class="skill-category">
+                <h3>🛠️ Tools & Platforms</h3>
+                <div class="skill-tags">
+                    <span class="skill-tag">VS Code</span>
+                    <span class="skill-tag">Azure DevOps</span>
+                    <span class="skill-tag">Git</span>
+                    <span class="skill-tag">JIRA</span>
+                    <span class="skill-tag">Postman</span>
+                    <span class="skill-tag">Dataloader</span>
+                    <span class="skill-tag">Figma</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2 class="section-title">Certifications</h2>
+        <div class="certifications">
+            <div class="cert-card">
+                <div class="cert-icon">🏆</div>
+                <h3>Platform Developer 1</h3>
+                <p>Salesforce Certified</p>
+            </div>
+            <div class="cert-card">
+                <div class="cert-icon">👨‍💼</div>
+                <h3>Administrator</h3>
+                <p>Salesforce Certified</p>
+            </div>
+            <div class="cert-card">
+                <div class="cert-icon">🤖</div>
+                <h3>AI Associate</h3>
+                <p>Salesforce Certified</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="recognition">
+        <h2 class="section-title">Recognition & Awards</h2>
+        <div class="awards">
+            <div class="award-item">
+                <span class="award-icon">⭐</span>
+                <strong>Spot Award</strong> - Received acknowledgement for timely and impactful deliverables towards the project
+            </div>
+            <div class="award-item">
+                <span class="award-icon">🏅</span>
+                <strong>Trailblazer Quarterly Awards Nomination</strong> - Recognized for work on Portal transformation using LWC and enhancing components performance
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2 class="section-title">Education</h2>
+        <div class="education-card">
+            <h3>Bachelor of Technology</h3>
+            <p style="font-size: 1.2rem; color: #666; margin-bottom: 0.5rem;">Galgotias University</p>
+            <p style="color: #888;">2018 - 2022</p>
+            <p style="margin-top: 1rem; color: #0070d2; font-weight: 600;">CGPA: 7.53</p>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Shashwat Mishra. All rights reserved.</p>
+        <p style="margin-top: 1rem; opacity: 0.8;">New Delhi, India</p>
+    </footer>
+
+    <script>
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Intersection Observer for fade-in animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.experience-card, .skill-category, .cert-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'all 0.6s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
